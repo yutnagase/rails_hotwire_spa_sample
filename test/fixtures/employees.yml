@@ -1,11 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  name: MyString
-  email: MyString
-  address: MyText
+  name: 北海道 太郎
+  email: hokkaido.taro@example.com
+  address: 北海道札幌市中央区北1条西1丁目1-1
 
 two:
-  name: MyString
-  email: MyString
-  address: MyText
+  name: 神奈川 次郎
+  email: kanagawa.jiro@example.com
+  address: 神奈川県横浜市西区みなとみらい1-1-1

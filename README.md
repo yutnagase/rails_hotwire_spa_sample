@@ -66,6 +66,33 @@ rails db:seed
 bin/dev
 ```
 
+## テスト
+
+### テストの実行
+
+```bash
+# 全テストの実行
+rails test
+
+# システムテストのみ実行
+rails test:system
+
+# 特定のテストファイルを実行
+rails test:system test/system/employees_test.rb
+```
+
+### テスト内容
+
+- **システムテスト**: Hotwire機能（Turbo Drive/Frames/Streams + Stimulus）の動作を検証
+- **コントローラーテスト**: 各エンドポイントの基本動作を検証
+- **モデルテスト**: バリデーションとリレーションを検証
+
+#### システムテストの特徴
+- Turbo Frameでの部分更新をテスト
+- Turbo Streamでのリアルタイム更新をテスト
+- Stimulusでの価格計算機能をテスト
+- 実際のブラウザ操作をシミュレート
+
 ## 初期データ
 
 シードファイルにより以下の初期データが投入されます：

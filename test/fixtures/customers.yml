@@ -1,9 +1,7 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  code: MyString
-  name: MyString
+  code: C001
+  name: 株式会社テクノロジー
 
 two:
-  code: MyString
-  name: MyString
+  code: C002
+  name: 有限会社イノベーション
