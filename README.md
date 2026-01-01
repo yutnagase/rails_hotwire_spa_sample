@@ -1,54 +1,69 @@
 # Rails Hotwire SPA Sample
 
-Rails 8 + Hotwire（Turbo + Stimulus）を使用した"ほぼSPA体験"のサンプルアプリケーションです。
+Rails 8 + Hotwire（Turbo + Stimulus）を使用した"ほぼ SPA 体験"のサンプルアプリケーションです。
 
 ## 概要
 
-このアプリケーションは、React/Vueを使わずにRailsだけで現代的なUI体験を構築することを目的としています。
+このアプリケーションは、React/Vue を使わずに Rails だけで現代的な UI 体験を構築することを目的としています。
 
 ### 使用技術
 
-- **Rails 8**: 最新のRailsフレームワーク
-- **Hotwire**: 
-  - **Turbo Drive**: リンク/フォームを高速化（`<body>`差し替え・`<head>`維持）でSPA的な遷移
+- **Rails 8**: 最新の Rails フレームワーク
+- **Hotwire**:
+  - **Turbo Drive**: リンク/フォームを高速化（`<body>`差し替え・`<head>`維持）で SPA 的な遷移
   - **Turbo Frames**: `<turbo-frame>`内を部分更新
-  - **Turbo Streams**: 複数DOM同時更新・リアルタイム（ActionCableと相性◎）
-- **Stimulus**: 必要最小限のJSでインタラクション付与
+  - **Turbo Streams**: 複数 DOM 同時更新・リアルタイム（ActionCable と相性 ◎）
+- **Stimulus**: 必要最小限の JS でインタラクション付与
 - **TailwindCSS**: モダンなスタイリング
 - **SQLite**: 開発用データベース
 
 ## 機能
 
 ### マスタ管理機能
+
 - **従業員管理**: ID、ユーザー名、メールアドレス、住所
+  ![従業員管理画面](docs/images/employee-management.png)
+
 - **商品管理**: ID、商品コード、商品名、原価、売価（利益率自動計算機能付き）
+  ![商品管理画面](docs/images/product-management.png)
+
 - **取引先管理**: ID、得意先コード、得意先名
+  ![取引先管理画面](docs/images/customer-management.png)
 
 ### トランザクション機能
+
 - **売上管理**: 年月日毎の売上入力・管理
+  ![売上管理画面](docs/images/sales-management.png)
 - **仕入管理**: 年月日毎の仕入入力・管理
+  ![仕入管理画面](docs/images/purchase-management.png)
 
 ### ダッシュボード機能
+
 - 各マスタ情報のサマリー表示
 - 各マスター登録ページへのリンク
 - 売上・仕入のサマリー表示
+  ![ダッシュボード画面](docs/images/dashboard.png)
 
-## Hotwireの実装例
+## Hotwire の実装例
 
 ### Turbo Drive
+
 - ナビゲーション間の高速遷移
 - ページ全体のリロードなしでの画面切り替え
 
 ### Turbo Frames
+
 - フォームの部分更新（新規作成・編集フォームの表示/非表示）
 - テーブル行の個別更新
 
 ### Turbo Streams
+
 - レコード作成時のリアルタイム追加
 - レコード削除時のリアルタイム削除
 - フォームクリア
 
 ### Stimulus
+
 - 商品フォームでの利益率自動計算
 - 価格入力時のリアルタイム計算
 
@@ -83,31 +98,33 @@ rails test:system test/system/employees_test.rb
 
 ### テスト内容
 
-- **システムテスト**: Hotwire機能（Turbo Drive/Frames/Streams + Stimulus）の動作を検証
+- **システムテスト**: Hotwire 機能（Turbo Drive/Frames/Streams + Stimulus）の動作を検証
 - **コントローラーテスト**: 各エンドポイントの基本動作を検証
 - **モデルテスト**: バリデーションとリレーションを検証
 
 #### システムテストの特徴
-- Turbo Frameでの部分更新をテスト
-- Turbo Streamでのリアルタイム更新をテスト
-- Stimulusでの価格計算機能をテスト
+
+- Turbo Frame での部分更新をテスト
+- Turbo Stream でのリアルタイム更新をテスト
+- Stimulus での価格計算機能をテスト
 - 実際のブラウザ操作をシミュレート
 
 ## 初期データ
 
 シードファイルにより以下の初期データが投入されます：
-- 従業員: 5件（北海道 太郎、神奈川 次郎など）
-- 商品: 5件（ノートパソコン、デスクトップPCなど）
-- 取引先: 5件（株式会社テクノロジーなど）
-- 売上・仕入: 各5件のサンプルデータ
+
+- 従業員: 5 件（北海道 太郎、神奈川 次郎など）
+- 商品: 5 件（ノートパソコン、デスクトップ PC など）
+- 取引先: 5 件（株式会社テクノロジーなど）
+- 売上・仕入: 各 5 件のサンプルデータ
 
 ## 特徴
 
-1. **SPA的な体験**: Turbo Driveによる高速ページ遷移
-2. **部分更新**: Turbo Framesによるフォームの部分表示
-3. **リアルタイム更新**: Turbo Streamsによる即座のDOM更新
-4. **軽量JavaScript**: Stimulusによる最小限のJS実装
-5. **モダンUI**: TailwindCSSによる美しいデザイン
+1. **SPA 的な体験**: Turbo Drive による高速ページ遷移
+2. **部分更新**: Turbo Frames によるフォームの部分表示
+3. **リアルタイム更新**: Turbo Streams による即座の DOM 更新
+4. **軽量 JavaScript**: Stimulus による最小限の JS 実装
+5. **モダン UI**: TailwindCSS による美しいデザイン
 
 ## ディレクトリ構造
 
@@ -126,7 +143,7 @@ app/
     └── controllers/     # Stimulusコントローラー
 ```
 
-このサンプルアプリケーションは、Hotwireの各機能を実際のビジネスアプリケーションでどのように活用できるかを示しています。
+このサンプルアプリケーションは、Hotwire の各機能を実際のビジネスアプリケーションでどのように活用できるかを示しています。
 
 ## ライセンス
 
