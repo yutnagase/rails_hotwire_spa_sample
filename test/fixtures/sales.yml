@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2026-01-01
+  employee: one
+  product: one
+  customer: one
+  quantity: 1
+  amount: 9.99
+
+two:
+  date: 2026-01-01
+  employee: two
+  product: two
+  customer: two
+  quantity: 1
+  amount: 9.99
