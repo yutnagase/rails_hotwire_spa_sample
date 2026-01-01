@@ -40,7 +40,7 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= sale.quantity %></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥<%= number_with_delimiter(sale.amount) %></td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <%= link_to "表示", sale, class: "text-blue-600 hover:text-blue-900 mr-3" %>
+                      <%= link_to "表示", sale, class: "text-blue-600 hover:text-blue-900 mr-3", data: { turbo_frame: "_top" } %>
                       <%= link_to "編集", edit_sale_path(sale), 
                           class: "text-blue-600 hover:text-blue-900 mr-3",
                           data: { turbo_frame: "sale_form" } %>
