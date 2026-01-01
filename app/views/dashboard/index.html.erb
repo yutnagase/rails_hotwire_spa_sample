@@ -1,0 +1,118 @@
+<div class="px-4 py-6 sm:px-0">
+  <div class="border-4 border-dashed border-gray-200 rounded-lg p-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">ダッシュボード</h1>
+    
+    <!-- サマリーカード -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <turbo-frame id="employees-summary" class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold">従</span>
+              </div>
+            </div>
+            <div class="ml-5 w-0 flex-1">
+              <dl>
+                <dt class="text-sm font-medium text-gray-500 truncate">従業員数</dt>
+                <dd class="text-lg font-medium text-gray-900"><%= @employees_count %></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="mt-3">
+            <%= link_to "管理", employees_path, class: "text-sm text-blue-600 hover:text-blue-500" %>
+          </div>
+        </div>
+      </turbo-frame>
+
+      <turbo-frame id="products-summary" class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold">商</span>
+              </div>
+            </div>
+            <div class="ml-5 w-0 flex-1">
+              <dl>
+                <dt class="text-sm font-medium text-gray-500 truncate">商品数</dt>
+                <dd class="text-lg font-medium text-gray-900"><%= @products_count %></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="mt-3">
+            <%= link_to "管理", products_path, class: "text-sm text-green-600 hover:text-green-500" %>
+          </div>
+        </div>
+      </turbo-frame>
+
+      <turbo-frame id="customers-summary" class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold">客</span>
+              </div>
+            </div>
+            <div class="ml-5 w-0 flex-1">
+              <dl>
+                <dt class="text-sm font-medium text-gray-500 truncate">取引先数</dt>
+                <dd class="text-lg font-medium text-gray-900"><%= @customers_count %></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="mt-3">
+            <%= link_to "管理", customers_path, class: "text-sm text-purple-600 hover:text-purple-500" %>
+          </div>
+        </div>
+      </turbo-frame>
+
+      <turbo-frame id="transactions-summary" class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-5">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold">取</span>
+              </div>
+            </div>
+            <div class="ml-5 w-0 flex-1">
+              <dl>
+                <dt class="text-sm font-medium text-gray-500 truncate">取引件数</dt>
+                <dd class="text-lg font-medium text-gray-900"><%= @sales_count + @purchases_count %></dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </turbo-frame>
+    </div>
+
+    <!-- 売上・仕入サマリー -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <turbo-frame id="sales-summary" class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">売上サマリー</h3>
+          <div class="mt-2">
+            <p class="text-sm text-gray-500">総売上件数: <span class="font-medium text-gray-900"><%= @sales_count %></span></p>
+            <p class="text-sm text-gray-500">総売上金額: <span class="font-medium text-gray-900">¥<%= number_with_delimiter(@total_sales_amount) %></span></p>
+          </div>
+          <div class="mt-3">
+            <%= link_to "売上管理", sales_path, class: "text-sm text-blue-600 hover:text-blue-500" %>
+          </div>
+        </div>
+      </turbo-frame>
+
+      <turbo-frame id="purchases-summary" class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">仕入サマリー</h3>
+          <div class="mt-2">
+            <p class="text-sm text-gray-500">総仕入件数: <span class="font-medium text-gray-900"><%= @purchases_count %></span></p>
+            <p class="text-sm text-gray-500">総仕入金額: <span class="font-medium text-gray-900">¥<%= number_with_delimiter(@total_purchases_amount) %></span></p>
+          </div>
+          <div class="mt-3">
+            <%= link_to "仕入管理", purchases_path, class: "text-sm text-red-600 hover:text-red-500" %>
+          </div>
+        </div>
+      </turbo-frame>
+    </div>
+  </div>
+</div>
