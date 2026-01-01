@@ -1,4 +1,61 @@
-<div>
-  <h1 class="font-bold text-4xl">Sales#index</h1>
-  <p>Find me in app/views/sales/index.html.erb</p>
+<div class="px-4 py-6 sm:px-0">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-xl font-semibold text-gray-900">売上管理</h1>
+      <p class="mt-2 text-sm text-gray-700">売上の一覧と管理</p>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <%= link_to "新規登録", new_sale_path, 
+          class: "inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto",
+          data: { turbo_frame: "sale_form" } %>
+    </div>
+  </div>
+
+  <turbo-frame id="sale_form" class="mt-6"></turbo-frame>
+
+  <div class="mt-8 flex flex-col">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+          <turbo-frame id="sales_list">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">日付</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">従業員</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">商品</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">取引先</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">数量</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">金額</th>
+                  <th scope="col" class="relative px-6 py-3"><span class="sr-only">操作</span></th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <% @sales.each do |sale| %>
+                  <tr id="sale_<%= sale.id %>">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= sale.date.strftime("%Y/%m/%d") %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= sale.employee.name %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= sale.product.name %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= sale.customer.name %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= sale.quantity %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥<%= number_with_delimiter(sale.amount) %></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <%= link_to "表示", sale, class: "text-blue-600 hover:text-blue-900 mr-3" %>
+                      <%= link_to "編集", edit_sale_path(sale), 
+                          class: "text-blue-600 hover:text-blue-900 mr-3",
+                          data: { turbo_frame: "sale_form" } %>
+                      <%= link_to "削除", sale, method: :delete,
+                          class: "text-red-600 hover:text-red-900",
+                          confirm: "本当に削除しますか？",
+                          data: { turbo_method: :delete } %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </turbo-frame>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

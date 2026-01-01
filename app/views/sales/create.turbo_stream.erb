@@ -1,0 +1,22 @@
+<%= turbo_stream.prepend "sales_list tbody" do %>
+  <tr id="sale_<%= @sale.id %>">
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= @sale.date.strftime("%Y/%m/%d") %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= @sale.employee.name %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= @sale.product.name %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"><%= @sale.customer.name %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= @sale.quantity %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥<%= number_with_delimiter(@sale.amount) %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+      <%= link_to "表示", @sale, class: "text-blue-600 hover:text-blue-900 mr-3" %>
+      <%= link_to "編集", edit_sale_path(@sale), 
+          class: "text-blue-600 hover:text-blue-900 mr-3",
+          data: { turbo_frame: "sale_form" } %>
+      <%= link_to "削除", @sale, method: :delete,
+          class: "text-red-600 hover:text-red-900",
+          confirm: "本当に削除しますか？",
+          data: { turbo_method: :delete } %>
+    </td>
+  </tr>
+<% end %>
+
+<%= turbo_stream.update "sale_form", "" %>
