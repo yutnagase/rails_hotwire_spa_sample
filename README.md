@@ -96,6 +96,79 @@ rails test:system
 rails test:system test/system/employees_test.rb
 ```
 
+## コード品質チェック
+
+### Push前の事前チェック（CI対応）
+
+GitにPushする前に、CIで実行されるチェックをローカルで事前に実行することを推奨します：
+
+```bash
+# 1. コードフォーマット・スタイルチェック
+bundle exec rubocop
+
+# 2. 自動修正可能な問題を修正
+bundle exec rubocop -a
+
+# 3. セキュリティ脆弱性チェック
+bundle exec brakeman
+
+# 4. 依存関係の脆弱性チェック
+bundle exec bundler-audit
+
+# 5. テスト実行
+rails test
+```
+
+### 一括チェックスクリプト
+
+全てのチェックを一度に実行：
+
+```bash
+# 以下のコマンドを順次実行
+bundle exec rubocop && \
+bundle exec brakeman && \
+bundle exec bundler-audit && \
+rails test
+```
+
+### 個別チェック詳細
+
+#### RuboCop（コードスタイル）
+
+```bash
+# 全ファイルをチェック
+bundle exec rubocop
+
+# 特定のファイルをチェック
+bundle exec rubocop app/controllers/customers_controller.rb
+
+# 自動修正（安全な修正のみ）
+bundle exec rubocop -a
+
+# 積極的な自動修正（注意が必要）
+bundle exec rubocop -A
+```
+
+#### Brakeman（セキュリティ）
+
+```bash
+# セキュリティ脆弱性をチェック
+bundle exec brakeman
+
+# 詳細レポート出力
+bundle exec brakeman -o brakeman_report.html
+```
+
+#### Bundler Audit（依存関係）
+
+```bash
+# 依存関係の脆弱性をチェック
+bundle exec bundler-audit
+
+# 脆弱性データベースを更新してチェック
+bundle exec bundler-audit --update
+```
+
 ### テスト内容
 
 - **システムテスト**: Hotwire 機能（Turbo Drive/Frames/Streams + Stimulus）の動作を検証
