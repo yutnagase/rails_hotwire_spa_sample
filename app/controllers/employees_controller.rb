@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :set_employee, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @employees = Employee.all
@@ -14,10 +14,10 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-    
+
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to @employee, notice: '従業員が正常に作成されました。' }
+        format.html { redirect_to @employee, notice: "従業員が正常に作成されました。" }
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -32,7 +32,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: '従業員が正常に更新されました。' }
+        format.html { redirect_to @employee, notice: "従業員が正常に更新されました。" }
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class EmployeesController < ApplicationController
   def destroy
     @employee.destroy
     respond_to do |format|
-      format.html { redirect_to employees_url, notice: '従業員が削除されました。' }
+      format.html { redirect_to employees_url, notice: "従業員が削除されました。" }
       format.turbo_stream
     end
   end

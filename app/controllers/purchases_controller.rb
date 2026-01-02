@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :edit, :update, :destroy]
+  before_action :set_purchase, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @purchases = Purchase.includes(:employee, :product).order(date: :desc)
@@ -16,10 +16,10 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
-    
+
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: '仕入が正常に作成されました。' }
+        format.html { redirect_to @purchase, notice: "仕入が正常に作成されました。" }
         format.turbo_stream
       else
         @employees = Employee.all
@@ -38,7 +38,7 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update(purchase_params)
-        format.html { redirect_to @purchase, notice: '仕入が正常に更新されました。' }
+        format.html { redirect_to @purchase, notice: "仕入が正常に更新されました。" }
         format.turbo_stream
       else
         @employees = Employee.all
@@ -52,7 +52,7 @@ class PurchasesController < ApplicationController
   def destroy
     @purchase.destroy
     respond_to do |format|
-      format.html { redirect_to purchases_url, notice: '仕入が削除されました。' }
+      format.html { redirect_to purchases_url, notice: "仕入が削除されました。" }
       format.turbo_stream
     end
   end

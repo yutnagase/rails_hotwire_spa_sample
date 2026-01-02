@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_action :set_sale, only: [:show, :edit, :update, :destroy]
+  before_action :set_sale, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @sales = Sale.includes(:employee, :product, :customer).order(date: :desc)
@@ -17,10 +17,10 @@ class SalesController < ApplicationController
 
   def create
     @sale = Sale.new(sale_params)
-    
+
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: '売上が正常に作成されました。' }
+        format.html { redirect_to @sale, notice: "売上が正常に作成されました。" }
         format.turbo_stream
       else
         @employees = Employee.all
@@ -41,7 +41,7 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        format.html { redirect_to @sale, notice: '売上が正常に更新されました。' }
+        format.html { redirect_to @sale, notice: "売上が正常に更新されました。" }
         format.turbo_stream
       else
         @employees = Employee.all
@@ -56,7 +56,7 @@ class SalesController < ApplicationController
   def destroy
     @sale.destroy
     respond_to do |format|
-      format.html { redirect_to sales_url, notice: '売上が削除されました。' }
+      format.html { redirect_to sales_url, notice: "売上が削除されました。" }
       format.turbo_stream
     end
   end

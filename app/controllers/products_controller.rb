@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @products = Product.all
@@ -14,10 +14,10 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    
+
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: '商品が正常に作成されました。' }
+        format.html { redirect_to @product, notice: "商品が正常に作成されました。" }
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: '商品が正常に更新されました。' }
+        format.html { redirect_to @product, notice: "商品が正常に更新されました。" }
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: '商品が削除されました。' }
+      format.html { redirect_to products_url, notice: "商品が削除されました。" }
       format.turbo_stream
     end
   end

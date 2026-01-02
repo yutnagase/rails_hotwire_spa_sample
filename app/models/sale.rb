@@ -2,7 +2,7 @@ class Sale < ApplicationRecord
   belongs_to :employee
   belongs_to :product
   belongs_to :customer
-  
+
   validates :date, presence: true
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validates :amount, presence: true, numericality: { greater_than: 0 }

@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @customers = Customer.all
@@ -14,10 +14,10 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    
+
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: '取引先が正常に作成されました。' }
+        format.html { redirect_to @customer, notice: "取引先が正常に作成されました。" }
         format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -32,7 +32,7 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: '取引先が正常に更新されました。' }
+        format.html { redirect_to @customer, notice: "取引先が正常に更新されました。" }
         format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class CustomersController < ApplicationController
   def destroy
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: '取引先が削除されました。' }
+      format.html { redirect_to customers_url, notice: "取引先が削除されました。" }
       format.turbo_stream
     end
   end

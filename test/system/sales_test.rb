@@ -15,9 +15,9 @@ class SalesTest < ApplicationSystemTestCase
 
   test "should create sale with turbo frame" do
     visit sales_url
-    
+
     click_on "新規登録"
-    
+
     within "#sale_form" do
       fill_in "日付", with: Date.current
       select @employee.name, from: "従業員"
@@ -25,10 +25,10 @@ class SalesTest < ApplicationSystemTestCase
       select @customer.name, from: "取引先"
       fill_in "数量", with: "5"
       fill_in "金額", with: "50000"
-      
+
       click_on "登録"
     end
-    
+
     assert_text @employee.name
     assert_text @product.name
     assert_text @customer.name
@@ -36,28 +36,28 @@ class SalesTest < ApplicationSystemTestCase
 
   test "should update sale with turbo frame" do
     visit sales_url
-    
+
     within "#sale_#{@sale.id}" do
       click_on "編集"
     end
-    
+
     within "#sale_form" do
       fill_in "数量", with: "10"
       click_on "更新"
     end
-    
+
     assert_text "10"
   end
 
   test "should destroy sale with turbo stream" do
     visit sales_url
-    
+
     within "#sale_#{@sale.id}" do
       accept_confirm do
         click_on "削除"
       end
     end
-    
+
     assert_no_selector "#sale_#{@sale.id}"
   end
 end
